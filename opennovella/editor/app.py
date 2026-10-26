@@ -503,7 +503,8 @@ class EditorApp:
     def open_demo(self):
         """Open the demo; copy it to the home folder first if it's installed read-only (e.g. from the .deb)."""
         path = DEMO_PATH
-        if not os.access(path, os.W_OK):
+        # A bundled .exe unpacks the demo into a temporary folder that is deleted on exit
+        if getattr(sys, "frozen", False) or not os.access(path, os.W_OK):
             path = os.path.join(os.path.expanduser("~"), "OpenNovella", "The Lantern Festival")
             if not os.path.isfile(os.path.join(path, STORY_FILENAME)):
                 try:
@@ -1003,7 +1004,10 @@ class EditorApp:
                                   "Play anyway?", parent=self.root):
             self.check_story()
             return
-        args = [sys.executable, "-m", "opennovella", "play", self.story.path]
+        if getattr(sys, "frozen", False):  # bundled .exe: sys.executable is OpenNovella.exe itself
+            args = [sys.executable, "play", self.story.path]
+        else:
+            args = [sys.executable, "-m", "opennovella", "play", self.story.path]
         if scene:
             args += ["--scene", scene]
         env = dict(os.environ)

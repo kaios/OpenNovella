@@ -25,6 +25,7 @@ in git, or generate them with scripts.
 - [Playing: controls for players](#playing-controls-for-players)
 - [Sharing your game](#sharing-your-game)
   - [Building the .deb](#building-the-deb)
+  - [Building the Windows .exe](#building-the-windows-exe)
 - [Command line](#command-line)
 - [The story file format (advanced)](#the-story-file-format-advanced)
 - [Project layout](#project-layout)
@@ -71,9 +72,15 @@ in git, or generate them with scripts.
 
 ## Installing
 
-OpenNovella needs **Python 3.9 or newer**.
+### Windows 11 (.exe, no Python needed)
 
-### Windows and macOS
+Download `OpenNovella-0.1.1.exe` and double-click it. It contains the editor, the player and the
+demo, so nothing else needs to be installed. Windows SmartScreen may warn about an unrecognised app
+because the file is not code-signed: choose **More info → Run anyway**.
+
+### Windows and macOS (from source)
+
+OpenNovella needs **Python 3.9 or newer**.
 
 1. Install Python from <https://www.python.org/downloads/>. On Windows, tick **"Add Python to PATH"**.
 2. Download or clone this folder, open a terminal in it, and run:
@@ -306,6 +313,19 @@ This writes `dist/opennovella_0.1.1_all.deb`. The package version is read from `
 architecture-independent (`all`) and contains the engine, the editor, the demo with its artwork
 pre-generated, a desktop entry, an icon and a man page.
 
+### Building the Windows .exe
+
+On Windows, with Python 3.9 or newer:
+
+```bash
+python -m pip install pyinstaller pygame Pillow
+python packaging/build_exe.py
+```
+
+This writes `dist/OpenNovella-0.1.1.exe`, a single file with the editor, the player, the demo and
+the logo as its icon. On Linux, `sh packaging/build_exe_wine.sh` runs the same build with Windows
+Python under Wine; the one-time Wine setup is described at the top of that script.
+
 ---
 
 ## Command line
@@ -392,7 +412,8 @@ OpenNovella/
 │   ├── bugreport.py          system info for bug reports
 │   └── editor/               tkinter editor (app, dialogs, story map, widgets)
 ├── examples/demo/            "The Lantern Festival" demo (+ make_art.py)
-├── packaging/                build_deb.sh + Debian files (control, desktop entry, icon, man page)
+├── packaging/                build_deb.sh + Debian files (control, desktop entry, icon, man page),
+│                             build_exe.py (Windows .exe)
 ├── tests/                    pytest suite
 ├── BUG_REPORT.md             how to report a bug
 └── .github/ISSUE_TEMPLATE/   bug report template for GitHub
