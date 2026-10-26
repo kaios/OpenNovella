@@ -90,10 +90,10 @@ OpenNovella needs **Python 3.9 or newer**.
 
 ### Debian / Ubuntu (.deb package)
 
-Download or build `opennovella_0.1.0_all.deb` (see [Building the .deb](#building-the-deb)), then:
+Download or build `opennovella_0.1.1_all.deb` (see [Building the .deb](#building-the-deb)), then:
 
 ```bash
-sudo apt install ./opennovella_0.1.0_all.deb
+sudo apt install ./opennovella_0.1.1_all.deb
 ```
 
 apt pulls in everything it needs (Python, pygame, Pillow, tkinter). OpenNovella then shows up in your
@@ -301,7 +301,7 @@ On any Debian or Ubuntu machine:
 sh packaging/build_deb.sh
 ```
 
-This writes `dist/opennovella_0.1.0_all.deb`. The package version is read from `__version__` in
+This writes `dist/opennovella_0.1.1_all.deb`. The package version is read from `__version__` in
 `opennovella/__init__.py`, which is the only place the version number is set. The package is
 architecture-independent (`all`) and contains the engine, the editor, the demo with its artwork
 pre-generated, a desktop entry, an icon and a man page.

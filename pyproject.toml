@@ -39,6 +39,9 @@ opennovella-editor = "opennovella.__main__:main"
 [tool.setuptools]
 packages = ["opennovella", "opennovella.editor"]
 
+[tool.setuptools.package-data]
+opennovella = ["icons/*.png"]
+
 [tool.setuptools.dynamic]
 version = { attr = "opennovella.__version__" }  # the single source of the version number
 

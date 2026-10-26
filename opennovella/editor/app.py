@@ -13,7 +13,7 @@ import tkinter as tk
 import webbrowser
 from tkinter import filedialog, messagebox, simpledialog, ttk
 
-from .. import __version__
+from .. import ICON_DIR, ICON_SIZES, __version__
 from ..bugreport import report_template
 from ..story import (CATEGORIES, COMMAND_TYPES, STORY_FILENAME, Story, StoryError,
                      create_project, new_command, summarize)
@@ -1036,8 +1036,28 @@ class EditorApp:
         ttk.Button(win, text="Copy to clipboard", command=copy_text).pack(pady=(0, 8))
 
 
+def set_window_icon(root: tk.Tk) -> None:
+    """Use the OpenNovella logo for this and every later window instead of the Tk feather."""
+    images = []
+    for size in ICON_SIZES:
+        try:
+            images.append(tk.PhotoImage(master=root, file=os.path.join(ICON_DIR, f"opennovella-{size}.png")))
+        except tk.TclError:
+            pass  # missing or unreadable icon file: keep the default
+    if images:
+        root.iconphoto(True, *images)
+        root._opennovella_icons = images  # keep references so Tk doesn't drop the images
+
+
 def run_editor(project: str | None = None) -> int:
-    root = tk.Tk()
+    # The taskbar/dock names a window after its WM_CLASS, which defaults to "Tk". Tk title-cases
+    # a root's className ("Opennovella"), but keeps a Toplevel's class exactly, so the editor
+    # lives in a Toplevel and the Tk root stays hidden.
+    master = tk.Tk(className="OpenNovella")
+    master.withdraw()
+    set_window_icon(master)
+    root = tk.Toplevel(master, class_="OpenNovella", name="opennovella")
+    root.bind("<Destroy>", lambda e: e.widget is root and master.destroy())
     EditorApp(root, project)
-    root.mainloop()
+    master.mainloop()
     return 0

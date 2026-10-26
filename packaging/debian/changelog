@@ -1,6 +1,14 @@
 opennovella (@VERSION@) unstable; urgency=medium
 
+  * New logo: an open book whose pages form a V.
+  * Editor and player windows use the logo as their window icon.
+  * The editor's taskbar/dock entry is named OpenNovella instead of Tk.
+
+ -- Shawn Rapaz <shawnrapaz@gmail.com>  @DATE@
+
+opennovella (0.1.0) unstable; urgency=medium
+
   * First release of OpenNovella: visual editor, pygame player, branching
     choices and variables, images and animations, save/load, export.
 
- -- Shawn Rapaz <shawnrapaz@gmail.com>  @DATE@
+ -- Shawn Rapaz <shawnrapaz@gmail.com>  Mon, 26 Oct 2026 19:06:20 +0900

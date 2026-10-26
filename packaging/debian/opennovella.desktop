@@ -5,6 +5,7 @@ GenericName=Visual Novel Editor
 Comment=Create visual novels with branching paths
 Exec=opennovella edit %f
 Icon=opennovella
+StartupWMClass=OpenNovella
 Terminal=false
 Categories=Game;Development;
 Keywords=visual novel;story;game;editor;interactive fiction;

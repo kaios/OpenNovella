@@ -27,7 +27,7 @@ import traceback
 os.environ.setdefault("PYGAME_HIDE_SUPPORT_PROMPT", "1")
 import pygame  # noqa: E402
 
-from . import __version__  # noqa: E402
+from . import ICON_DIR, __version__  # noqa: E402
 from .assets import AssetManager, hex_color  # noqa: E402
 from .engine import Engine, EngineError, Event  # noqa: E402
 from .story import POSITIONS, Story  # noqa: E402
@@ -1257,6 +1257,10 @@ class Player:
         except pygame.error as exc:
             log.warning("Audio disabled: %s", exc)
         pygame.display.set_caption(story.title)
+        try:
+            pygame.display.set_icon(pygame.image.load(os.path.join(ICON_DIR, "opennovella-64.png")))
+        except (pygame.error, FileNotFoundError) as exc:
+            log.warning("Window icon not loaded: %s", exc)
         self.fullscreen = self.prefs.get("fullscreen", False) if fullscreen is None else fullscreen
         self.window_size = window_size or self._default_window_size()
         self._make_window()
