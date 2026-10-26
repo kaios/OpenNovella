@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "opennovella"
+dynamic = ["version"]
+description = "An easy-to-use visual novel engine with a visual editor, branching paths, images and animations."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "GPL-3.0-or-later" }
+authors = [
+    { name = "Shawn Rapaz" },
+    { name = "Claude Code" },
+]
+keywords = ["visual novel", "game engine", "interactive fiction", "pygame", "branching story"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+    "Operating System :: OS Independent",
+    "Topic :: Games/Entertainment",
+    "Intended Audience :: End Users/Desktop",
+]
+dependencies = [
+    "pygame>=2.1",
+    "Pillow>=9.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7"]
+
+[project.scripts]
+opennovella = "opennovella.__main__:main"
+
+[project.gui-scripts]
+opennovella-editor = "opennovella.__main__:main"
+
+[tool.setuptools]
+packages = ["opennovella", "opennovella.editor"]
+
+[tool.setuptools.dynamic]
+version = { attr = "opennovella.__version__" }  # the single source of the version number
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

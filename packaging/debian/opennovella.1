@@ -1,0 +1,54 @@
+.TH OPENNOVELLA 1 "" "OpenNovella @VERSION@" "User Commands"
+.SH NAME
+opennovella \- easy visual novel engine and editor
+.SH SYNOPSIS
+.B opennovella
+.RI [ command ] " " [ options ]
+.SH DESCRIPTION
+OpenNovella creates and plays visual novels with branching paths, characters,
+backgrounds, music, transitions and animations. Run without arguments to open
+the visual editor.
+.SH COMMANDS
+.TP
+.BI "edit " [PROJECT]
+Open the editor, optionally with a project.
+.TP
+.BI "play " PROJECT
+Play a story. Options:
+.B \-\-scene
+.I NAME
+starts at a scene,
+.B \-\-fullscreen
+starts in fullscreen.
+.TP
+.BI "new " FOLDER
+Create a new project. Options:
+.BI \-\-title " TITLE" ,
+.BI \-\-author " NAME" ,
+.BR \-\-empty .
+.TP
+.BI "check " PROJECT
+List problems in a story. Exits with status 1 if there are errors.
+.TP
+.BI "export " "PROJECT OUTPUT"
+Create a shareable game folder.
+.TP
+.BI "bugreport " [PROJECT]
+Print system information for a bug report.
+.PP
+.I PROJECT
+is a project folder or the path to its story.json.
+.SH FILES
+.TP
+.I ~/.opennovella/editor.json
+Editor settings and recent projects.
+.TP
+.I PROJECT/saves/
+Save games, player settings and crash logs.
+.TP
+.I /usr/lib/opennovella/examples/demo
+The demo story "The Lantern Festival".
+.SH SEE ALSO
+/usr/share/doc/opennovella/README.md
+.SH AUTHORS
+OpenNovella was created by Shawn Rapaz and Claude Code.

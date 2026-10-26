@@ -1,0 +1,19 @@
+Package: opennovella
+Version: @VERSION@
+Section: games
+Priority: optional
+Architecture: all
+Depends: python3 (>= 3.9), python3-pygame (>= 2.1), python3-pil, python3-tk
+Installed-Size: @SIZE@
+Maintainer: Shawn Rapaz <shawnrapaz@gmail.com>
+Description: easy visual novel engine with a visual editor
+ OpenNovella lets anyone create visual novels with branching paths,
+ characters, backgrounds, music, transitions and animations using a
+ point-and-click editor - no programming needed.
+ .
+ Features include choices and variables for branching stories, a story
+ map, a story checker, animated GIF/WebP and frame-folder animations,
+ save/load with thumbnails, history, auto and skip modes, and exporting
+ games to share.
+ .
+ Created by Shawn Rapaz and Claude Code.

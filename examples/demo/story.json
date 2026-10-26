@@ -1,0 +1,572 @@
+{
+  "format": 1,
+  "engine": "OpenNovella",
+  "title": "The Lantern Festival",
+  "author": "OpenNovella Demo",
+  "resolution": [
+    1280,
+    720
+  ],
+  "start_scene": "start",
+  "settings": {
+    "text_speed": 45,
+    "font": "",
+    "font_size": 28,
+    "name_font_size": 30,
+    "textbox_color": "#14141e",
+    "textbox_opacity": 200,
+    "text_color": "#f4f4f8",
+    "accent_color": "#c89bff",
+    "title_background": "images/bg_festival.png",
+    "title_background_color": "#1c1838",
+    "title_music": "",
+    "auto_delay": 1.5
+  },
+  "variables": {
+    "courage": 0,
+    "friendship": 0,
+    "helped_tomas": false
+  },
+  "characters": {
+    "mira": {
+      "name": "Mira",
+      "color": "#ffb3c7",
+      "images": {
+        "default": "images/mira_default.png",
+        "happy": "images/mira_happy.png",
+        "sad": "images/mira_sad.png"
+      }
+    },
+    "tomas": {
+      "name": "Old Tomas",
+      "color": "#ffd27a",
+      "images": {
+        "default": "images/tomas_default.png"
+      }
+    }
+  },
+  "scenes": {
+    "start": {
+      "notes": "Opening: the player arrives at the village.",
+      "commands": [
+        {
+          "type": "background",
+          "image": "images/bg_village.png",
+          "color": "#3a4a7a",
+          "transition": "fade",
+          "duration": 1.2,
+          "clear_characters": false
+        },
+        {
+          "type": "say",
+          "character": "",
+          "expression": "",
+          "text": "Every autumn, the village of Lowmere floats a thousand paper lanterns into the night sky."
+        },
+        {
+          "type": "say",
+          "character": "",
+          "expression": "",
+          "text": "This year, for the first time, you were invited to help."
+        },
+        {
+          "type": "show",
+          "character": "mira",
+          "expression": "happy",
+          "image": "",
+          "position": "right",
+          "transition": "slide_right",
+          "effect": "bounce",
+          "duration": 0.5
+        },
+        {
+          "type": "say",
+          "character": "mira",
+          "expression": "",
+          "text": "You made it! I was starting to think you'd get lost on the hill road."
+        },
+        {
+          "type": "say",
+          "character": "mira",
+          "expression": "default",
+          "text": "So... are you ready for your first Lantern Festival?"
+        },
+        {
+          "type": "choice",
+          "prompt": "How do you answer Mira?",
+          "options": [
+            {
+              "text": "“I can't wait!”",
+              "target": "eager",
+              "condition": "",
+              "effects": "courage += 1; friendship += 1"
+            },
+            {
+              "text": "“Honestly? I'm a little nervous.”",
+              "target": "nervous",
+              "condition": "",
+              "effects": "friendship += 2"
+            }
+          ]
+        }
+      ]
+    },
+    "eager": {
+      "notes": "",
+      "commands": [
+        {
+          "type": "say",
+          "character": "mira",
+          "expression": "happy",
+          "text": "That's the spirit!"
+        },
+        {
+          "type": "show",
+          "character": "mira",
+          "expression": "happy",
+          "image": "",
+          "position": "center",
+          "transition": "fade",
+          "effect": "jump",
+          "duration": 0.5
+        },
+        {
+          "type": "jump",
+          "scene": "square"
+        }
+      ]
+    },
+    "nervous": {
+      "notes": "",
+      "commands": [
+        {
+          "type": "say",
+          "character": "mira",
+          "expression": "default",
+          "text": "That's okay. Everyone is, the first time. I'll stay with you."
+        },
+        {
+          "type": "jump",
+          "scene": "square"
+        }
+      ]
+    },
+    "square": {
+      "notes": "The town square. Introduces Tomas and the main branch.",
+      "commands": [
+        {
+          "type": "background",
+          "image": "images/bg_festival.png",
+          "color": "#5a2f5f",
+          "transition": "dissolve",
+          "duration": 1.0,
+          "clear_characters": false
+        },
+        {
+          "type": "move",
+          "character": "mira",
+          "position": "left",
+          "duration": 0.6
+        },
+        {
+          "type": "show",
+          "character": "tomas",
+          "expression": "default",
+          "image": "",
+          "position": "right",
+          "transition": "fade",
+          "effect": "none",
+          "duration": 0.5
+        },
+        {
+          "type": "say",
+          "character": "tomas",
+          "expression": "",
+          "text": "Ah, Mira! And you've brought a helper. Good, good."
+        },
+        {
+          "type": "say",
+          "character": "tomas",
+          "expression": "",
+          "text": "My old hands are too slow this year. I still have twenty lanterns to finish before moonrise."
+        },
+        {
+          "type": "say",
+          "character": "mira",
+          "expression": "sad",
+          "text": "But the best spot on the hill fills up fast... we'd have to leave now to get it."
+        },
+        {
+          "type": "choice",
+          "prompt": "What do you do?",
+          "options": [
+            {
+              "text": "Stay and help Tomas finish the lanterns",
+              "target": "workshop",
+              "condition": "",
+              "effects": "helped_tomas = true; courage += 1"
+            },
+            {
+              "text": "Hurry to the hill with Mira",
+              "target": "hill",
+              "condition": "",
+              "effects": "friendship += 1"
+            },
+            {
+              "text": "Ask Mira to help Tomas too  (needs friendship 2+)",
+              "target": "together",
+              "condition": "friendship >= 2",
+              "effects": "helped_tomas = true; friendship += 1"
+            }
+          ]
+        }
+      ]
+    },
+    "workshop": {
+      "notes": "",
+      "commands": [
+        {
+          "type": "hide",
+          "character": "mira",
+          "transition": "slide_left",
+          "duration": 0.5
+        },
+        {
+          "type": "move",
+          "character": "tomas",
+          "position": "center",
+          "duration": 0.6
+        },
+        {
+          "type": "say",
+          "character": "tomas",
+          "expression": "",
+          "text": "Bless you. Fold here... and here. Gently now - paper remembers every crease."
+        },
+        {
+          "type": "effect",
+          "effect": "fade_out",
+          "color": "#000000",
+          "duration": 0.8,
+          "wait": true
+        },
+        {
+          "type": "say",
+          "character": "",
+          "expression": "",
+          "text": "Hours pass in warm lamplight. One by one, the lanterns take shape."
+        },
+        {
+          "type": "effect",
+          "effect": "fade_in",
+          "color": "#ffffff",
+          "duration": 0.8,
+          "wait": true
+        },
+        {
+          "type": "say",
+          "character": "tomas",
+          "expression": "",
+          "text": "Twenty! We did it. Now go - find Mira. Tell her the last lantern is hers."
+        },
+        {
+          "type": "jump",
+          "scene": "night"
+        }
+      ]
+    },
+    "together": {
+      "notes": "Unlocked only with enough friendship.",
+      "commands": [
+        {
+          "type": "show",
+          "character": "mira",
+          "expression": "happy",
+          "image": "",
+          "position": "center",
+          "transition": "fade",
+          "effect": "bounce",
+          "duration": 0.5
+        },
+        {
+          "type": "say",
+          "character": "mira",
+          "expression": "happy",
+          "text": "Of course I'll help! Forget the hill - we'll make our own best spot."
+        },
+        {
+          "type": "animation",
+          "image": "images/sparkle_strip8.png",
+          "position": "center",
+          "loops": 2,
+          "fps": 14,
+          "wait": false,
+          "id": ""
+        },
+        {
+          "type": "say",
+          "character": "tomas",
+          "expression": "",
+          "text": "Ha! Three pairs of hands. We'll be done in no time."
+        },
+        {
+          "type": "set",
+          "variable": "friendship",
+          "operation": "+=",
+          "value": "1"
+        },
+        {
+          "type": "jump",
+          "scene": "night"
+        }
+      ]
+    },
+    "hill": {
+      "notes": "",
+      "commands": [
+        {
+          "type": "hide",
+          "character": "tomas",
+          "transition": "fade",
+          "duration": 0.5
+        },
+        {
+          "type": "background",
+          "image": "images/bg_hill_rain.png",
+          "color": "#22304a",
+          "transition": "slide_left",
+          "duration": 1.0,
+          "clear_characters": false
+        },
+        {
+          "type": "show",
+          "character": "mira",
+          "expression": "happy",
+          "image": "",
+          "position": "center",
+          "transition": "fade",
+          "effect": "none",
+          "duration": 0.5
+        },
+        {
+          "type": "say",
+          "character": "mira",
+          "expression": "happy",
+          "text": "We made it! Look, we can see the whole valley."
+        },
+        {
+          "type": "animation",
+          "image": "images/rain",
+          "position": "fullscreen",
+          "loops": 0,
+          "fps": 16,
+          "wait": false,
+          "id": "rain"
+        },
+        {
+          "type": "effect",
+          "effect": "tint",
+          "color": "#1a2a4a",
+          "duration": 1.0,
+          "wait": false
+        },
+        {
+          "type": "sound",
+          "file": "audio/thunder.wav"
+        },
+        {
+          "type": "effect",
+          "effect": "flash",
+          "color": "#ffffff",
+          "duration": 0.4,
+          "wait": true
+        },
+        {
+          "type": "effect",
+          "effect": "shake",
+          "color": "#ffffff",
+          "duration": 0.6,
+          "wait": true
+        },
+        {
+          "type": "say",
+          "character": "mira",
+          "expression": "sad",
+          "text": "Oh no. Rain..."
+        },
+        {
+          "type": "jump",
+          "scene": "night"
+        }
+      ]
+    },
+    "night": {
+      "notes": "All paths meet here; the ending depends on variables.",
+      "commands": [
+        {
+          "type": "if",
+          "condition": "helped_tomas and friendship >= 3",
+          "then_scene": "ending_best",
+          "else_scene": ""
+        },
+        {
+          "type": "if",
+          "condition": "helped_tomas",
+          "then_scene": "ending_good",
+          "else_scene": ""
+        },
+        {
+          "type": "jump",
+          "scene": "ending_rain"
+        }
+      ]
+    },
+    "ending_best": {
+      "notes": "",
+      "commands": [
+        {
+          "type": "stop_animation",
+          "id": ""
+        },
+        {
+          "type": "effect",
+          "effect": "clear_tint",
+          "color": "#ffffff",
+          "duration": 0.5,
+          "wait": false
+        },
+        {
+          "type": "background",
+          "image": "images/bg_festival.png",
+          "color": "#5a2f5f",
+          "transition": "fade",
+          "duration": 0.8,
+          "clear_characters": true
+        },
+        {
+          "type": "show",
+          "character": "mira",
+          "expression": "happy",
+          "image": "",
+          "position": "left",
+          "transition": "fade",
+          "effect": "none",
+          "duration": 0.5
+        },
+        {
+          "type": "show",
+          "character": "tomas",
+          "expression": "default",
+          "image": "",
+          "position": "right",
+          "transition": "fade",
+          "effect": "none",
+          "duration": 0.5
+        },
+        {
+          "type": "say",
+          "character": "",
+          "expression": "",
+          "text": "At moonrise, a thousand lanterns lift into the sky - and three of them were folded by your hands."
+        },
+        {
+          "type": "animation",
+          "image": "images/sparkle_strip8.png",
+          "position": "fullscreen",
+          "loops": 3,
+          "fps": 12,
+          "wait": false,
+          "id": ""
+        },
+        {
+          "type": "say",
+          "character": "mira",
+          "expression": "happy",
+          "text": "Courage {courage}, friendship {friendship}. Not bad for a first festival!"
+        },
+        {
+          "type": "end",
+          "text": "A Sky Full of Lanterns",
+          "ending": "Best Ending"
+        }
+      ]
+    },
+    "ending_good": {
+      "notes": "",
+      "commands": [
+        {
+          "type": "stop_animation",
+          "id": ""
+        },
+        {
+          "type": "effect",
+          "effect": "clear_tint",
+          "color": "#ffffff",
+          "duration": 0.5,
+          "wait": false
+        },
+        {
+          "type": "background",
+          "image": "images/bg_festival.png",
+          "color": "#5a2f5f",
+          "transition": "fade",
+          "duration": 0.8,
+          "clear_characters": true
+        },
+        {
+          "type": "show",
+          "character": "mira",
+          "expression": "happy",
+          "image": "",
+          "position": "center",
+          "transition": "slide_up",
+          "effect": "none",
+          "duration": 0.5
+        },
+        {
+          "type": "say",
+          "character": "mira",
+          "expression": "",
+          "text": "You helped Tomas? Then this one's for you."
+        },
+        {
+          "type": "say",
+          "character": "",
+          "expression": "",
+          "text": "She hands you the last lantern. It glows as it rises."
+        },
+        {
+          "type": "end",
+          "text": "The Last Lantern",
+          "ending": "Good Ending"
+        }
+      ]
+    },
+    "ending_rain": {
+      "notes": "",
+      "commands": [
+        {
+          "type": "say",
+          "character": "",
+          "expression": "",
+          "text": "The rain soaks the paper. Only a handful of lanterns rise this year."
+        },
+        {
+          "type": "say",
+          "character": "mira",
+          "expression": "sad",
+          "text": "There's always next year... right?"
+        },
+        {
+          "type": "stop_animation",
+          "id": "rain"
+        },
+        {
+          "type": "end",
+          "text": "Next Year, Perhaps",
+          "ending": "Rainy Ending"
+        }
+      ]
+    }
+  }
+}

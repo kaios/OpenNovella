@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <!-- OpenNovella icon: an open book with a glowing lantern -->
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="45%" r="50%">
+      <stop offset="0" stop-color="#ffd27a" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#ffd27a" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect x="4" y="4" width="120" height="120" rx="26" fill="#2a2150"/>
+  <circle cx="64" cy="46" r="34" fill="url(#glow)"/>
+  <path d="M58 22h12v6H58z" fill="#7a5bd6"/>
+  <rect x="50" y="28" width="28" height="36" rx="12" fill="#ffb347"/>
+  <path d="M56 30v32M64 29v34M72 30v32" stroke="#e8892f" stroke-width="2"/>
+  <path d="M58 64h12v5H58z" fill="#7a5bd6"/>
+  <path d="M16 80c16-6 32-6 48 4 16-10 32-10 48-4v28c-16-6-32-6-48 4-16-10-32-10-48-4z" fill="#f5f3fa"/>
+  <path d="M64 84v28" stroke="#c89bff" stroke-width="3"/>
+  <path d="M24 88c10-3 20-3 32 2M24 96c10-3 20-3 32 2M72 90c12-5 22-5 32-2M72 98c12-5 22-5 32-2"
+        stroke="#b9acd9" stroke-width="2" fill="none" stroke-linecap="round"/>
+</svg>

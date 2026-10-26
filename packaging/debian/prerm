@@ -1,0 +1,5 @@
+#!/bin/sh
+set -e
+# Remove the bytecode created by postinst so dpkg can remove the directory cleanly.
+find /usr/lib/opennovella -name __pycache__ -type d -prune -exec rm -rf {} + 2>/dev/null || true
+exit 0

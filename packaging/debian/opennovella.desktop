@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=OpenNovella
+GenericName=Visual Novel Editor
+Comment=Create visual novels with branching paths
+Exec=opennovella edit %f
+Icon=opennovella
+Terminal=false
+Categories=Game;Development;
+Keywords=visual novel;story;game;editor;interactive fiction;

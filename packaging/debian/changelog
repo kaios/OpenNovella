@@ -1,0 +1,6 @@
+opennovella (@VERSION@) unstable; urgency=medium
+
+  * First release of OpenNovella: visual editor, pygame player, branching
+    choices and variables, images and animations, save/load, export.
+
+ -- Shawn Rapaz <shawnrapaz@gmail.com>  @DATE@

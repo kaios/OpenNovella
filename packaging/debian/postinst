@@ -1,0 +1,7 @@
+#!/bin/sh
+set -e
+# Pre-compile the engine so it starts quickly for every user.
+if [ "$1" = "configure" ] && command -v python3 >/dev/null; then
+    python3 -m compileall -q /usr/lib/opennovella/opennovella >/dev/null 2>&1 || true
+fi
+exit 0
